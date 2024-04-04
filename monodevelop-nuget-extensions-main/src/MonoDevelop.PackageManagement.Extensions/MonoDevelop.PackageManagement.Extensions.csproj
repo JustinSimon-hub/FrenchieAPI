@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="MonoDevelop.References.props" />
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>MonoDevelop.PackageManagement</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <PublicSign>True</PublicSign>
+    <AssemblyOriginatorKeyFile>..\MonoDevelop-Public.snk</AssemblyOriginatorKeyFile>
+    <OutputPath>..\..\bin</OutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+   <ItemGroup>
+    <EmbeddedResource Include="MonoDevelop.PackageManagement.Extensions.addin.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoDevelop.EnvDTE\MonoDevelop.EnvDTE.vbproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoDevelop.PackageManagement.PowerShell\MonoDevelop.PackageManagement.PowerShell.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore">
+      <HintPath>$(MDBinDir)\PresentationCore.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoDevelop.EnvDTE">
+      <HintPath>$(OutputPath)\MonoDevelop.EnvDTE.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\NuGet-LICENSE.txt">
+      <Link>NuGet-LICENSE.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\external\vsmac-console\src\Microsoft.VisualStudio.Components\ConsoleInputEventArgs.cs">
+      <Link>Microsoft.VisualStudio.Components\ConsoleInputEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\external\vsmac-console\src\Microsoft.VisualStudio.Components\ConsoleViewCommandHandler.cs">
+      <Link>Microsoft.VisualStudio.Components\ConsoleViewCommandHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\external\vsmac-console\src\Microsoft.VisualStudio.Components\ConsoleViewController.cs">
+      <Link>Microsoft.VisualStudio.Components\ConsoleViewController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\external\vsmac-console\src\Microsoft.VisualStudio.Components\ConsoleViewReadOnlyRegionCommandHandler.cs">
+      <Link>Microsoft.VisualStudio.Components\ConsoleViewReadOnlyRegionCommandHandler.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Modules\NuGet\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="7.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0-4.final" />
+  </ItemGroup>
+</Project>

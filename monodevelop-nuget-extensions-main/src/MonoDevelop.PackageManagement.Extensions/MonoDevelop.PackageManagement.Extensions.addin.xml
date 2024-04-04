@@ -1,0 +1,129 @@
+<Addin
+	name        = "NuGet Package Management Extensions"
+	id          = "PackageManagement.Extensions"
+	namespace   = "MonoDevelop"
+	author      = "Matt Ward"
+	copyright   = "MIT"
+	url         = "https://github.com/mrward/monodevelop-nuget-extensions"
+	description = "Provides extensions to the NuGet addin."
+	category    = "IDE extensions"
+	version     = "0.34">
+
+	<Runtime>
+		<Import assembly="MonoDevelop.PackageManagement.Extensions.dll" />
+		<Import assembly="MonoDevelop.EnvDTE.dll" />
+
+		<Import file="NuGet.Resolver.dll" />
+		<ScanExclude path="NuGet.Resolver.dll" />
+		<Import file="NuGet-LICENSE.txt" />
+
+		<Import assembly="MonoDevelop.PackageManagement.PowerShell.dll" />
+		<Import assembly="MonoDevelop.PackageManagement.PowerShell.Cmdlets.dll" />
+
+		<Import file="Modules/NuGet/about_NuGet.PackageManagement.PowerShellCmdlets.help.txt" />
+		<Import file="Modules/NuGet/NuGet.Format.ps1xml" />
+		<Import file="Modules/NuGet/NuGet.PackageManagement.PowerShellCmdlets.dll-Help.xml" />
+		<Import file="Modules/NuGet/NuGet.psd1" />
+		<Import file="Modules/NuGet/nuget.psm1" />
+		<Import file="Modules/NuGet/NuGet.Types.ps1xml" />
+		<Import file="Modules/NuGet/Profile.ps1" />
+
+		<Import assembly="Markdig.Signed.dll" />
+		<Import assembly="Microsoft.ApplicationInsights.dll" />
+		<!--<Import file="Microsoft.Bcl.AsyncInterfaces.dll" />-->
+		<!--<Import file="Microsoft.CodeAnalysis.CSharp.dll" />-->
+		<!--<Import file="Microsoft.CodeAnalysis.dll" />-->
+		<Import assembly="Microsoft.Extensions.ObjectPool.dll" />
+		<Import assembly="Microsoft.Management.Infrastructure.dll" />
+		<Import assembly="Microsoft.PowerShell.Commands.Management.dll" />
+		<Import assembly="Microsoft.PowerShell.Commands.Utility.dll" />
+		<Import assembly="Microsoft.PowerShell.ConsoleHost.dll" />
+		<Import assembly="Microsoft.PowerShell.MarkdownRender.dll" />
+		<Import assembly="Microsoft.PowerShell.SDK.dll" />
+		<Import assembly="Microsoft.PowerShell.Security.dll" />
+		<Import assembly="Microsoft.Win32.Registry.AccessControl.dll" />
+		<!--<Import file="Microsoft.Win32.SystemEvents.dll" />-->
+		<Import assembly="NJsonSchema.dll" />
+		<Import assembly="Namotion.Reflection.dll" />
+		<!--<Import file="System.CodeDom.dll" />-->
+		<Import assembly="System.ComponentModel.Composition.Registration.dll" />
+		<!--<Import file="System.ComponentModel.Composition.dll" />-->
+		<!--<Import file="System.Configuration.ConfigurationManager.dll" />-->
+		<Import assembly="System.Data.Odbc.dll" />
+		<Import assembly="System.Data.OleDb.dll" />
+		<Import assembly="System.Data.SqlClient.dll" />
+		<!--<Import file="System.Diagnostics.EventLog.dll" />-->
+		<!--<Import file="System.Diagnostics.PerformanceCounter.dll" />-->
+		<Import assembly="System.DirectoryServices.AccountManagement.dll" />
+		<Import assembly="System.DirectoryServices.Protocols.dll" />
+		<Import assembly="System.DirectoryServices.dll" />
+		<!--<Import file="System.Drawing.Common.dll" />-->
+		<!--<Import file="System.IO.Packaging.dll" />-->
+		<!--<Import file="System.IO.Ports.dll" />-->
+		<Import assembly="System.Management.Automation.dll" />
+		<Import assembly="System.Management.dll" />
+		<Import assembly="System.Net.Http.WinHttpHandler.dll" />
+		<Import assembly="System.Private.ServiceModel.dll" />
+		<Import assembly="System.Reflection.Context.dll" />
+		<Import assembly="System.Runtime.Caching.dll" />
+		<!--<Import file="System.Security.Cryptography.Pkcs.dll" />-->
+		<!--<Import file="System.Security.Cryptography.ProtectedData.dll" />-->
+		<!--<Import file="System.Security.Cryptography.Xml.dll" />-->
+		<!--<Import file="System.Security.Permissions.dll" />-->
+		<Import assembly="System.ServiceModel.Duplex.dll" />
+		<Import assembly="System.ServiceModel.Http.dll" />
+		<Import assembly="System.ServiceModel.NetTcp.dll" />
+		<Import assembly="System.ServiceModel.Primitives.dll" />
+		<Import assembly="System.ServiceModel.Security.dll" />
+		<Import assembly="System.ServiceModel.Syndication.dll" />
+		<Import assembly="System.ServiceModel.dll" />
+		<Import assembly="System.ServiceProcess.ServiceController.dll" />
+		<Import assembly="System.Speech.dll" />
+		<!--<Import file="System.Threading.AccessControl.dll" />-->
+		<Import assembly="System.Web.Services.Description.dll" />
+		<!--<Import file="System.Windows.Extensions.dll" />-->
+		<Import file="libmi.dylib" />
+		<Import file="libpsl-native.dylib" />
+		<Import file="libpsrpclient.dylib" />
+		<Import file="runtimes/unix/lib/net7.0/Modules/Microsoft.PowerShell.Host/Microsoft.PowerShell.Host.psd1" />
+		<Import file="runtimes/unix/lib/net7.0/Modules/Microsoft.PowerShell.Management/Microsoft.PowerShell.Management.psd1" />
+		<Import file="runtimes/unix/lib/net7.0/Modules/Microsoft.PowerShell.Security/Microsoft.PowerShell.Security.psd1" />
+		<Import file="runtimes/unix/lib/net7.0/Modules/Microsoft.PowerShell.Utility/Microsoft.PowerShell.Utility.psd1" />
+	</Runtime>
+	<Dependencies>
+		<Addin id="Core" version="17.5"/>
+		<Addin id="Ide" version="17.5"/>
+		<Addin id="PackageManagement" version="17.5"/>
+		<Addin id="DotNetCore" version="17.5" />
+	</Dependencies>
+
+	<Extension path="/MonoDevelop/Ide/Composition">
+		<Assembly file="MonoDevelop.PackageManagement.Extensions.dll"/>
+	</Extension>
+
+	<Extension path="/MonoDevelop/Ide/SearchCategories">
+		<Class class="MonoDevelop.PackageManagement.InstallPackageSearchCategory" />
+		<Class class="MonoDevelop.PackageManagement.NuGetPackageSearchCategory" />
+	</Extension>
+
+	<Extension path="/MonoDevelop/Ide/Pads">
+		<Pad
+			id="MonoDevelop.PackageManagement.PackageConsolePad"
+			defaultLayout="*"
+			defaultPlacement="Center Bottom"
+			defaultStatus="AutoHide"
+			icon="md-console"
+			class="MonoDevelop.PackageManagement.PackageConsolePad"
+			_label="NuGet Package Manager Console" />
+	</Extension>
+	<!--
+	<Extension path="/MonoDevelop/ProjectModel/ProjectModelExtensions">
+		<Class class="MonoDevelop.PackageManagement.Scripting.GlobalMSBuildProjectCollectionMSBuildExtension" />
+	</Extension>-->
+
+	<Extension path="/MonoDevelop/Ide/Pads/ProjectPad">
+		<NodeBuilder class="MonoDevelop.PackageManagement.NodeBuilders.SolutionNodeBuilderExtension" />
+		<NodeBuilder class="MonoDevelop.PackageManagement.NodeBuilders.NuGetConfigFilesSolutionNodeBuilder" />
+		<NodeBuilder class="MonoDevelop.PackageManagement.NodeBuilders.NuGetConfigFileNodeBuilder" />
+	</Extension>
+</Addin>
